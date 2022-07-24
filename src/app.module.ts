@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { Asset } from './assets/entities/asset.entity';
 import { User } from './users/entities/user.entity';
 
 @Module({
@@ -10,10 +11,10 @@ import { User } from './users/entities/user.entity';
       port: 3306,
       username: 'root',
       database: 'ei-interview',
-      entities: [User],
+      entities: [User, Asset],
       synchronize: true,
       autoLoadEntities: true
-    }),
-  ],
+    })
+  ]
 })
 export class AppModule {}

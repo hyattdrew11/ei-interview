@@ -1,4 +1,3 @@
-
 import { Asset } from '../../assets/entities/asset.entity';
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
 
@@ -16,6 +15,6 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
-  //  @OneToMany(type => Asset, asset => asset.id)
-  //  assets: Asset[];
+  @OneToMany((type) => Asset, (asset) => asset.user)
+  assets: Asset[];
 }
