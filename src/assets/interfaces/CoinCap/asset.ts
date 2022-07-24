@@ -1,8 +1,5 @@
-import { User } from "src/users/entities/user.entity";
-
-export class CreateAssetDto {
-    userId: number;
-    externalId: string;
+export interface CoinCapAsset {
+    id: string;
     rank: string;
     symbol: string;
     name: string;

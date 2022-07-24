@@ -1,16 +1,17 @@
 import { User } from '../../users/entities/user.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class Asset {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => User, (user) => user.assets)
+  @ManyToOne(() => User, (user) => user.assets, { eager: true })
+  @JoinColumn()
   user: User;
 
   @Column()
-  externalDd: string;
+  externalId: string;
 
   @Column()
   rank: string;
