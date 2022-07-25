@@ -1,5 +1,5 @@
 import { Asset } from '../../assets/entities/asset.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
 
 @Entity()
 export class User {
@@ -15,6 +15,12 @@ export class User {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany((type) => Asset, (asset) => asset.user)
+  @OneToMany(() => Asset, (asset) => asset.user)
   assets: Asset[];
+
+  @CreateDateColumn()
+  created_at: Date;
+    
+  @UpdateDateColumn()
+  updated_at: Date;
 }

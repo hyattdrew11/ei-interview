@@ -10,9 +10,7 @@ import { User } from './entities/user.entity';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private usersRepository: Repository<User>,
-    @InjectRepository(Asset)
-    private assetsRepository: Repository<Asset>
+    private usersRepository: Repository<User>
   ) {}
   
   async create(createUserDto: CreateUserDto) {
@@ -24,25 +22,38 @@ export class UsersService {
   }
 
    async update(id: number, updateUserDto: UpdateUserDto) {
-     const createdAssets = [];
-     const newAssets = updateUserDto.assets;
-     let {assets, ...userUpdates} = updateUserDto;
-     const user =  await this.usersRepository.update(id, userUpdates);
-     newAssets.forEach(async value => {
-        const assetEntity = this.assetsRepository.create(value);
-        const asset = await this.assetsRepository.save(assetEntity);
-        createdAssets.push(asset);
-      });
+    //  const createdAssets = [];
+    //  const newAssets = updateUserDto.assets;
+    //  let {assets, ...userUpdates} = updateUserDto;
+     const user =  await this.usersRepository.update(id, updateUserDto);
+     
+    //  newAssets.forEach(async value => {
+    //     const assetEntity = this.assetsRepository.create(value);
+    //     const asset = await this.assetsRepository.save(assetEntity);
+    //     createdAssets.push(asset);
+    //   });
 
-     return {user: user, assets: createdAssets };
+     return user;
   }
 
   findAll(): Promise<User[]> {
-    return this.usersRepository.find();
+    return this.usersRepository.find({
+      relations: {
+        assets: true,
+        }
+      }
+    );
   }
 
-  findOne(id: number): Promise<User> {
-    return this.usersRepository.findOneBy({ id });
+  async findOne(id: number): Promise<User> {
+    const user =  await this.usersRepository.findOne({
+      relations: {
+        assets: true,
+        },
+        where: { id: id },
+      }
+    );
+    return user;
   }
 
   async remove(id: number): Promise<void> {

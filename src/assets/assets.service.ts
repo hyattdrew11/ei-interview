@@ -1,11 +1,22 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateAssetDto } from './dto/create-asset.dto';
 import { UpdateAssetDto } from './dto/update-asset.dto';
+import { Asset } from './entities/asset.entity';
 
 @Injectable()
 export class AssetsService {
-  create(createAssetDto: CreateAssetDto) {
-    return 'This action adds a new asset';
+   constructor(
+    @InjectRepository(Asset)
+    private assetsRepository: Repository<Asset>
+  ) {}
+  async create(createAssetDto: CreateAssetDto) {
+     // SERIALIZE POST BODY
+    const assetEntity =  this.assetsRepository.create(createAssetDto);
+    // SAVE TO DB
+    const res =  await this.assetsRepository.save(assetEntity);
+    return res;
   }
 
   findAll() {
