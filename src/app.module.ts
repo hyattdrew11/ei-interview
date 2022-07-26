@@ -16,10 +16,10 @@ import { AuthorizationModule } from './authorization/authorization.module';
     ConfigModule.forRoot(),
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
-      port: 3306,
+      host:  process.env.DATABASE_HOST,
+      port: parseInt(process.env.DATABASE_PORT),
       username: process.env.DATABASE_USER,
-      database: 'ei-interview',
+      database:  process.env.DATABASE_NAME,
       entities: [User, Asset],
       synchronize: true,
       autoLoadEntities: true

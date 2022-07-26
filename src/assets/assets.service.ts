@@ -20,7 +20,7 @@ export class AssetsService {
   }
 
   findAll() {
-    return `This action returns all assets`;
+    return this.assetsRepository.find()
   }
 
   findOne(id: number) {
@@ -32,6 +32,6 @@ export class AssetsService {
   }
 
   remove(id: number) {
-    return `This action removes a #${id} asset`;
+    return this.assetsRepository.delete(id);
   }
 }

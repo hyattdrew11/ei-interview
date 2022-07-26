@@ -24,11 +24,14 @@
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+[Nest](https://github.com/nestjs/nest) Expert Institue Technical Interview Backend API Project.
 
 ## Installation
 
+Ensure Node Version Manager is installed. (https://github.com/nvm-sh/nvm). Ensure you have an active instance of MySql running locally or can connect to MySql Database. Create a .env file from .env.example with the appropriate database variables defined. Ensure MySql database schema is created and matches DATABASE_NAME variable defined in the .env
+
 ```bash
+$ nvm use
 $ npm install
 ```
 
@@ -36,7 +39,7 @@ $ npm install
 
 ```bash
 # development
-$ npm run start
+$ npm run start:debug
 
 # watch mode
 $ npm run start:dev

@@ -21,8 +21,8 @@ export class IntegrationsController {
   }
 
   @Get()
-  findAll() {
-    return this.integrationsService.getAllAssets();
+  findAll(@Param('search') search?: string, @Param('ids') ids?: string, @Param('limit') limit?: number, @Param('offset') offset?: number) {
+    return this.integrationsService.getAllAssets(search, ids, limit, offset);
   }
 
   @Get(':id')

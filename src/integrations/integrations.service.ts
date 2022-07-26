@@ -15,9 +15,9 @@ export class IntegrationsService {
     return 'This action adds a new integration';
   }
 
-  async getAllAssets(): Promise<AxiosResponse<CoinCapAsset[]>> {
+  async getAllAssets(search?: string, ids?: string, limit?: number, offset?: number): Promise<AxiosResponse<CoinCapAsset[]>> {
     const res = await this.httpService
-      .get(`${this.baseUrl}/assets`)
+      .get(`${this.baseUrl}/assets?search=${search}&ids=${ids}&limit=${limit}&offset=${offset}`)
       .toPromise();
     return res.data;
   }

@@ -25,6 +25,12 @@ export class AssetsController {
     return this.assetsService.findAll();
   }
 
+  // @Get('wallet')
+  // wallet() {
+  //   const assets = this.assetsService.findAll();
+  //   return assets;
+  // }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.assetsService.findOne(+id);
