@@ -7,15 +7,15 @@ import { Asset } from './entities/asset.entity';
 
 @Injectable()
 export class AssetsService {
-   constructor(
+  constructor(
     @InjectRepository(Asset)
     private assetsRepository: Repository<Asset>
   ) {}
   async create(createAssetDto: CreateAssetDto) {
-     // SERIALIZE POST BODY
-    const assetEntity =  this.assetsRepository.create(createAssetDto);
+    // SERIALIZE POST BODY
+    const assetEntity = this.assetsRepository.create(createAssetDto);
     // SAVE TO DB
-    const res =  await this.assetsRepository.save(assetEntity);
+    const res = await this.assetsRepository.save(assetEntity);
     return res;
   }
 

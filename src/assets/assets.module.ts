@@ -6,12 +6,12 @@ import { Asset } from './entities/asset.entity';
 import { AuthMiddleware } from 'src/authorization/authorization.middleware';
 
 @Module({
-   imports: [TypeOrmModule.forFeature([Asset])],
+  imports: [TypeOrmModule.forFeature([Asset])],
   controllers: [AssetsController],
   providers: [AssetsService]
 })
 export class AssetsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes(AssetsController)
+    consumer.apply(AuthMiddleware).forRoutes(AssetsController);
   }
 }

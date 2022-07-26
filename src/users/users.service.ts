@@ -12,47 +12,45 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>
   ) {}
-  
+
   async create(createUserDto: CreateUserDto) {
     // SERIALIZE POST BODY
-    const userEntity =  this.usersRepository.create(createUserDto);
+    const userEntity = this.usersRepository.create(createUserDto);
     // SAVE TO DB
-    const res =  await this.usersRepository.save(userEntity);
+    const res = await this.usersRepository.save(userEntity);
     return res;
   }
 
-   async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: number, updateUserDto: UpdateUserDto) {
     //  const createdAssets = [];
     //  const newAssets = updateUserDto.assets;
     //  let {assets, ...userUpdates} = updateUserDto;
-     const user =  await this.usersRepository.update(id, updateUserDto);
-     
+    const user = await this.usersRepository.update(id, updateUserDto);
+
     //  newAssets.forEach(async value => {
     //     const assetEntity = this.assetsRepository.create(value);
     //     const asset = await this.assetsRepository.save(assetEntity);
     //     createdAssets.push(asset);
     //   });
 
-     return user;
+    return user;
   }
 
   findAll(): Promise<User[]> {
     return this.usersRepository.find({
       relations: {
-        assets: true,
-        }
+        assets: true
       }
-    );
+    });
   }
 
   async findOne(id: number): Promise<User> {
-    const user =  await this.usersRepository.findOne({
+    const user = await this.usersRepository.findOne({
       relations: {
-        assets: true,
-        },
-        where: { id: id },
-      }
-    );
+        assets: true
+      },
+      where: { id: id }
+    });
     return user;
   }
 

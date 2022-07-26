@@ -1,5 +1,13 @@
 import { User } from '../../users/entities/user.entity';
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity()
 export class Asset {
@@ -7,10 +15,10 @@ export class Asset {
   id: number;
 
   @Column()
-  userId: number
+  userId: number;
 
   @ManyToOne(() => User, (user) => user.assets)
-  @JoinColumn({name: "userId"})
+  @JoinColumn({ name: 'userId' })
   user: User;
 
   @Column()
@@ -47,7 +55,7 @@ export class Asset {
 
   @CreateDateColumn()
   created_at: Date;
-    
+
   @UpdateDateColumn()
   updated_at: Date;
 }

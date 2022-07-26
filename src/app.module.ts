@@ -10,7 +10,7 @@ import { AuthorizationModule } from './authorization/authorization.module';
 
 @Module({
   imports: [
-    UsersModule, 
+    UsersModule,
     AssetsModule,
     IntegrationsModule,
     ConfigModule.forRoot(),

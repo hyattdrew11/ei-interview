@@ -1,11 +1,17 @@
 import { verify } from 'jsonwebtoken';
-import { CanActivate, ExecutionContext, ForbiddenException, Injectable, NestMiddleware } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  ForbiddenException,
+  Injectable,
+  NestMiddleware
+} from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { expressJwtSecret } from 'jwks-rsa';
-import {promisify} from 'util';
+import { promisify } from 'util';
 import * as jwt from 'express-jwt';
 import jwt_decode from 'jwt-decode';
-import { Request, Response} from 'express';
+import { Request, Response } from 'express';
 
 @Injectable()
 export class AuthMiddleware implements NestMiddleware {
@@ -42,7 +48,7 @@ t7yiOVq+A8z03PchbFh0BUTIyoM1vz/YaRvzx20E5VG3926vdOiOjyo2j3XBH+/+
 NLvoOQ21qbBRpzov+9jatNZSe7MjU9QTc/YEzGfSN8d9XlQAM+dj7TlF4R87cp39
 TYTRTo2E6RiIY/6n9ZQ1kLaZAVIHsr6FVw+A7miswo/p4jEQw5YwmUHEDCxS7Zd3
 K3Qh/7xDi7Z27An4B7R68UE=
------END CERTIFICATE-----`,
+-----END CERTIFICATE-----`
       );
       console.log(validateToken);
       // user = await this.userService.findOneById(id);

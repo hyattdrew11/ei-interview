@@ -8,14 +8,14 @@ import { AuthMiddleware } from 'src/authorization/authorization.middleware';
   imports: [
     HttpModule.register({
       timeout: 5000,
-      maxRedirects: 5,
-    }),
+      maxRedirects: 5
+    })
   ],
   controllers: [IntegrationsController],
   providers: [IntegrationsService]
 })
 export class IntegrationsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthMiddleware).forRoutes(IntegrationsController)
+    consumer.apply(AuthMiddleware).forRoutes(IntegrationsController);
   }
 }

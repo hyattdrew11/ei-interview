@@ -16,7 +16,9 @@ export class IntegrationsService {
   }
 
   async getAllAssets(): Promise<AxiosResponse<CoinCapAsset[]>> {
-    const res = await  this.httpService.get(`${this.baseUrl}/assets`).toPromise()
+    const res = await this.httpService
+      .get(`${this.baseUrl}/assets`)
+      .toPromise();
     return res.data;
   }
 

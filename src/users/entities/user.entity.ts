@@ -1,5 +1,12 @@
 import { Asset } from '../../assets/entities/asset.entity';
-import { Entity, Column, PrimaryGeneratedColumn, OneToMany, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  OneToMany,
+  CreateDateColumn,
+  UpdateDateColumn
+} from 'typeorm';
 
 @Entity()
 export class User {
@@ -20,7 +27,7 @@ export class User {
 
   @CreateDateColumn()
   created_at: Date;
-    
+
   @UpdateDateColumn()
   updated_at: Date;
 }
