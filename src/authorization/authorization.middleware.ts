@@ -20,15 +20,12 @@ export class AuthMiddleware implements NestMiddleware {
   async use(req: Request | any, res: Response, next: () => void) {
     const bearerHeader = req.headers.authorization;
     const accessToken = bearerHeader && bearerHeader.split(' ')[1];
-    let user;
 
     if (!bearerHeader || !accessToken) {
-      // return next();
       throw new ForbiddenException('Please register or sign in.');
     }
-    console.log(process.env.ACCESS_TOKEN_SECRET);
     try {
-      const validateToken = verify(
+      verify(
         accessToken,
         `-----BEGIN CERTIFICATE-----
 MIIDDTCCAfWgAwIBAgIJEiF1RptLNRwZMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNV
@@ -50,15 +47,10 @@ TYTRTo2E6RiIY/6n9ZQ1kLaZAVIHsr6FVw+A7miswo/p4jEQw5YwmUHEDCxS7Zd3
 K3Qh/7xDi7Z27An4B7R68UE=
 -----END CERTIFICATE-----`
       );
-      console.log(validateToken);
-      // user = await this.userService.findOneById(id);
     } catch (error) {
       throw new ForbiddenException('Please register or sign in.');
     }
 
-    // if (user) {
-    //   req.user = user;
-    // }
     next();
   }
 }
