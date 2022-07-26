@@ -17,6 +17,9 @@ export class Asset {
   @Column()
   userId: number;
 
+  @Column()
+  quantity: number;
+
   @ManyToOne(() => User, (user) => user.assets)
   @JoinColumn({ name: 'userId' })
   user: User;

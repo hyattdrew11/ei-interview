@@ -32,8 +32,12 @@ export class IntegrationsService {
       return res;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} integration`;
+  async findOne(id: string):Promise<AxiosResponse<CoinCapAsset>> {
+    const url = `${this.baseUrl}/assets/${id}`;
+    const res = await this.httpService
+      .get(url)
+      .toPromise();
+    return res.data;
   }
 
   update(id: number, updateIntegrationDto: UpdateIntegrationDto) {

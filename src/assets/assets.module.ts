@@ -4,9 +4,10 @@ import { AssetsController } from './assets.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Asset } from './entities/asset.entity';
 import { AuthMiddleware } from 'src/authorization/authorization.middleware';
+import { IntegrationsModule } from 'src/integrations/integrations.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Asset])],
+  imports: [TypeOrmModule.forFeature([Asset]), IntegrationsModule],
   controllers: [AssetsController],
   providers: [AssetsService]
 })

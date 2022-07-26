@@ -12,9 +12,7 @@ export class AssetsService {
     private assetsRepository: Repository<Asset>
   ) {}
   async create(createAssetDto: CreateAssetDto) {
-    // SERIALIZE POST BODY
     const assetEntity = this.assetsRepository.create(createAssetDto);
-    // SAVE TO DB
     const res = await this.assetsRepository.save(assetEntity);
     return res;
   }
@@ -27,9 +25,9 @@ export class AssetsService {
     return `This action returns a #${id} asset`;
   }
 
-  update(id: number, updateAssetDto: UpdateAssetDto) {
-    return `This action updates a #${id} asset`;
-  }
+  // update(id: number, updateAssetDto: UpdateAssetDto) {
+  //   return `This action updates a #${id} asset`;
+  // }
 
   remove(id: number) {
     return this.assetsRepository.delete(id);

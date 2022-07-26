@@ -33,7 +33,7 @@ export class IntegrationsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.integrationsService.findOne(+id);
+    return this.integrationsService.findOne(id);
   }
 
   @Patch(':id')

@@ -12,7 +12,8 @@ import { AuthMiddleware } from 'src/authorization/authorization.middleware';
     })
   ],
   controllers: [IntegrationsController],
-  providers: [IntegrationsService]
+  providers: [IntegrationsService],
+  exports: [IntegrationsService]
 })
 export class IntegrationsModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
