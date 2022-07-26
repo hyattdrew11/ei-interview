@@ -19,6 +19,7 @@ export class AuthMiddleware implements NestMiddleware {
     try {
       verify(
         accessToken,
+        // TODO: WE SHOULD BE ABLE TO DEFINE THIS A URL IN THE .ENV, HOW TO GET URL CONTENTS AS A STRING IN THE .ENV FILE ???
         `-----BEGIN CERTIFICATE-----
 MIIDDTCCAfWgAwIBAgIJEiF1RptLNRwZMA0GCSqGSIb3DQEBCwUAMCQxIjAgBgNV
 BAMTGWRldi1zLXEyeTdraS51cy5hdXRoMC5jb20wHhcNMjIwMjEwMDUyMTUwWhcN
@@ -39,6 +40,7 @@ TYTRTo2E6RiIY/6n9ZQ1kLaZAVIHsr6FVw+A7miswo/p4jEQw5YwmUHEDCxS7Zd3
 K3Qh/7xDi7Z27An4B7R68UE=
 -----END CERTIFICATE-----`
       );
+      // TODO: WE SHOULD BE ABLE TO DEFINE THIS A URL IN THE .ENV, HOW TO GET URL CONTENTS AS A STRING IN THE .ENV FILE ???
       // TODO: ADD USER CONTEXT TO REQUEST CONTEXT ADD LOGGING
     } catch (error) {
       throw new ForbiddenException('Please register or sign in.');

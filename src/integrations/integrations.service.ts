@@ -15,11 +15,21 @@ export class IntegrationsService {
     return 'This action adds a new integration';
   }
 
-  async getAllAssets(search?: string, ids?: string, limit?: number, offset?: number): Promise<AxiosResponse<CoinCapAsset[]>> {
+  async getAllAssets(limit?: number, offset?: number): Promise<AxiosResponse<CoinCapAsset[]>> {
+    const url = `${this.baseUrl}/assets?limit=${limit}&offset=${offset}`;
     const res = await this.httpService
-      .get(`${this.baseUrl}/assets?search=${search}&ids=${ids}&limit=${limit}&offset=${offset}`)
+      .get(url)
       .toPromise();
     return res.data;
+  }
+
+  async getAssetsValue(id: string, quantity: number): Promise<string> {
+    const url = `${this.baseUrl}/assets/${id}`;
+    const asset = await this.httpService
+      .get(url)
+      .toPromise();
+      const res = `$${(asset.data.data.priceUsd * quantity).toFixed(2)}`;
+      return res;
   }
 
   findOne(id: number) {

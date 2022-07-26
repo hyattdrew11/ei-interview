@@ -5,6 +5,7 @@ import {
   Body,
   Patch,
   Param,
+  Query,
   Delete
 } from '@nestjs/common';
 import { IntegrationsService } from './integrations.service';
@@ -21,8 +22,13 @@ export class IntegrationsController {
   }
 
   @Get()
-  findAll(@Param('search') search?: string, @Param('ids') ids?: string, @Param('limit') limit?: number, @Param('offset') offset?: number) {
-    return this.integrationsService.getAllAssets(search, ids, limit, offset);
+  findAll(@Query() query:  {limit: number, offset: number}) {
+    return this.integrationsService.getAllAssets(query.limit, query.offset);
+  }
+
+  @Get('asset-value')
+  getAssetsValue(@Query() query: {id: string, quantity: number}) {
+    return this.integrationsService.getAssetsValue(query.id, query.quantity)
   }
 
   @Get(':id')
